@@ -15,12 +15,9 @@ def preprocessing(df):
         data_y[i] = df['y'][i]
         temp_df = np.array(df['X'][i][:,:,0:3])
         temp_df_shape = np.array(df['X'][i][:,:,0:3]).shape
-        print(temp_df_shape)
         max_shape = np.max(temp_df_shape)
         max_shape_orient = np.where(temp_df_shape==max_shape) # zwróci 0 albo 1
-        print(max_shape_orient)
         temp_arr = np.zeros((max_shape,max_shape,3)) ## mozna czymś wypełnić tło
-        print(temp_arr.shape)
 
         if max_shape_orient[0][0] == 0:
             t = (temp_df_shape[0] - temp_df_shape[1])//2
