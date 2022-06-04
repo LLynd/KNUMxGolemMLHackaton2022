@@ -1,12 +1,3 @@
-import numpy as np
-from skimage.transform import resize
-import pandas as pd
-
-
-def normalize(x):
-    return x/255
-
-
 def preprocessing(df):
     data_x = np.zeros((len(df),256,256,3))
     data_y = np.zeros((len(df),1))
@@ -37,6 +28,3 @@ def preprocessing(df):
 
 
     return data_x, data_y
-
-
-    df["X"] = df["X"].apply(normalize) 
