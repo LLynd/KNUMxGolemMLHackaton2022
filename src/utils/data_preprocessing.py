@@ -1,6 +1,7 @@
 import numpy as np
 import os
 from PIL import Image
+from skimage.transform import resize
 
 
 class Preprocessor:
@@ -48,7 +49,7 @@ class Preprocessor:
                 t = (temp_df_shape[1] - temp_df_shape[0])//2
                 temp_arr[t:t+temp_df_shape[0],:,:] = img
             
-            data_x[i] = np.resize(temp_arr,(256,256,3))   
+            data_x[i] = resize(temp_arr,(256,256,3))
         data_x = np.where(data_x==0, mean/(i+1), data_x)
 
         for i in range(data_x.shape[0]):
