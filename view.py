@@ -22,6 +22,6 @@ if __name__ == '__main__':
 
     # args = parser.parse_args()
     # Wpisujcie path tutaj, jest szybciej
-    filepath = "/home/lucas/KNUMxGolemMLHackaton2022_data/public_dataset/images_part1_valid"
+    filepath = "data/images_part1_valid/"
 
     viz(filepath, filepath+".json")  # args.data_path, args.labels_path)
