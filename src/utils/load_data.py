@@ -2,15 +2,14 @@ import json
 import pandas as pd
 from PIL import Image
 import numpy as np
-import keras
 import os
 class LoadData:
     def __init__(self, mode):
         self.files = []
         self.mode = mode
         if mode == 'TRAIN':
-            self.json_path = '../../data/reference_images_part1.json'
             self.images_path = '../../data/reference_images_part1/'
+            self.json_path = '../../data/reference_images_part1.json'
         elif mode == 'VAL':
             self.json_path = '../../data/images_part1_valid.json'
             self.images_path = '../../data/images_part1_valid/'
@@ -44,8 +43,9 @@ class LoadData:
             im_id = instance['image_id']
             bbox = instance['bbox']
             y.append(instance['category_id'])
-            y_desc.append(categories.loc[categories['id']==instance['category_id']]['name'].values[0])
-
+            y_desc.append(
+                categories.loc[categories['id']==instance['category_id']]['name'].values[0]
+            )
         self.df['y'] = y
         self.df['desc'] = y_desc
 
