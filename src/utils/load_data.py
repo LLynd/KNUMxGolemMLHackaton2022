@@ -38,7 +38,7 @@ class LoadData:
 
         y = []
         y_desc = []
-
+        X = []
         for instance in data['annotations']:
             im_id = instance['image_id']
             bbox = instance['bbox']
@@ -46,8 +46,11 @@ class LoadData:
             y_desc.append(
                 categories.loc[categories['id']==instance['category_id']]['name'].values[0]
             )
+            X.append(np.asarray(Image.open(self.files[data['annotations'].index])))
+
         self.df['y'] = y
         self.df['desc'] = y_desc
+        self.df['X'] = X
 
         return self.df
 
