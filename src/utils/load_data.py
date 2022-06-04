@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import imageio
 
+
 def load_data(mode):
     if mode == 'TRAIN':
         json_path = 'data/reference_images_part1.json'
