@@ -8,7 +8,7 @@ class LoadData:
         self.files = []
         self.mode = mode
         if mode == 'TRAIN':
-            self.images_path = '../../data/preprocessed/reference_images_part1/'
+            self.images_path = '../../data/preprocessed/'
             self.json_path = '../../data/reference_images_part1.json'
         elif mode == 'VAL':
             self.json_path = '../../data/images_part1_valid.json'
