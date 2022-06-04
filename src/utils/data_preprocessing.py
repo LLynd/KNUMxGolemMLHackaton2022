@@ -1,6 +1,4 @@
 import numpy as np
-#from skimage.transform import resize
-import pandas as pd
 import os
 from PIL import Image
 
@@ -53,3 +51,10 @@ class Preprocessor:
             data_x[i] = np.resize(temp_arr,(256,256,3))   
         data_x = np.where(data_x==0, mean/(i+1), data_x)
 
+        for i in range(data_x.shape[0]):
+            tmp = data_x[i]
+            np.save(f'../../data/preprocessed/image{i}.npy', tmp)
+
+
+prep = Preprocessor('TRAIN')
+prep.preproces()
