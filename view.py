@@ -1,6 +1,7 @@
 import fiftyone as fo
 import argparse
 
+
 def viz(data_path: str, labels_path: str) -> None:
     dataset = fo.Dataset.from_dir(
         data_path=data_path,
@@ -19,6 +20,8 @@ if __name__ == '__main__':
     parser.add_argument('--labels-path', help='JSON file with annotations',
                         required=True, type=str)
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
+    # Wpisujcie path tutaj, jest szybciej
+    filepath = "/home/lucas/KNUMxGolemMLHackaton2022_data/public_dataset/images_part1_valid"
 
-    viz(args.data_path, args.labels_path)
+    viz(filepath, filepath+".json")  # args.data_path, args.labels_path)
