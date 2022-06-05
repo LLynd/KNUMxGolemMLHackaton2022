@@ -35,6 +35,9 @@ class Preprocessor:
         for file, i in zip(self.files, idxs):
             img = np.asarray(Image.open(file))
             img = img[:,:,:3]
+            #obracanie pionowo
+            if img.shape[0] > img.shape[1]:
+              img = np.rot90(img,axes=(-2,-3))
             temp_df_shape = img.shape
             mean += np.mean(img)
             max_shape = np.max(temp_df_shape)
