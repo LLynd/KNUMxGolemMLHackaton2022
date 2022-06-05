@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from PIL import Image
-
+import matplotlib.pyplot as plt
 
 class Preprocessor:
     def __init__(self, mode):
