@@ -2,11 +2,17 @@ from scipy.spatial import distance
 import numpy as np
 import pandas as pd
 import json
+import numpy.typing as npt
 
 
-def compute_distances(x, embedding, method=distance.cosine):
+def compute_distances(x: float, embedding: npt.ArrayLike,
+                      method=distance.cosine) -> list:
     '''
-    opis
+    A function computing a list of distances between . Returns..
+    x =
+    embedding =
+    method =
+
     '''
     distances = np.zeros((embedding.shape[0]))
     for i in range(embedding.shape[0]):
@@ -14,9 +20,32 @@ def compute_distances(x, embedding, method=distance.cosine):
     return distances
 
 
-def load_data(mode):
+def classify(distances, classes):
     '''
-    opis
+    A function that classifies samples based on . Returns
+    distances - list of distances between  ; same dimensions as classes.
+    classes = list of labels
+    :type distances: list[float]
+    :type classes: list[str]
+    '''
+    weights = {cls: [] for cls in classes}
+    for i in range(len(distances)):
+        weights[classes[i]].append(distances[i])
+
+    m = max(sum(list(map(lambda x: pow(x, -1), scores)))/len(scores) for scores
+            in weights.values())
+    for cls in weights.keys():
+        lm = sum(list(map(lambda x: pow(x, -1),
+                          weights[cls])))/len(weights[cls])
+        if lm == m:
+            return cls
+
+
+def load_data(mode: str) -> pd.DataFrame:
+    '''
+    LEGACY FUNCTION
+    A function to load data from a particular set (training or validation).
+    Returns a pd.DataFrame with metadata.
     '''
     if mode == 'TRAIN':
         json_path = '../../data/reference_images_part2.json'
@@ -62,23 +91,3 @@ def load_data(mode):
     df['occ'] = occluded
 
     return df
-
-
-def classify(distances, classes):
-    '''
-    same lengths
-    distances - np.array
-    classes - np.array
-    returns: class
-    '''
-    weights = {cls: [] for cls in classes}
-    for i in range(len(distances)):
-        weights[classes[i]].append(distances[i])
-
-    m = max(sum(list(map(lambda x: pow(x, -1), scores)))/len(scores) for scores
-            in weights.values())
-    for cls in weights.keys():
-        lm = sum(list(map(lambda x: pow(x, -1),
-                          weights[cls])))/len(weights[cls])
-        if lm == m:
-            return cls
